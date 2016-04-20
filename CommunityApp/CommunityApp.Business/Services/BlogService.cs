@@ -30,5 +30,17 @@ namespace CommunityApp.Business.Services
             
             return flag;
         }
+
+        public IEnumerable<BlogPost> GetAllPosts()
+        {
+            IEnumerable<BlogPost> allPosts = null;
+
+            using(CommunityAppDbEntities dbContext = new CommunityAppDbEntities())
+            {
+                allPosts = dbContext.BlogPosts.AsEnumerable().ToList();
+            }
+
+            return allPosts;
+        }
     }
 }

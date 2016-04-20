@@ -1,5 +1,6 @@
 ﻿using CommunityApp.Business.Services;
 using CommunityApp.Entity;
+using CommunityApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,9 @@ namespace CommunityApp.Controllers
         // GET: Blog
         public ActionResult Index()
         {
-            return View();
+            BlogService service = new BlogService();
+            
+            return View(service.GetAllPosts());
         }
 
         public ActionResult Create()
@@ -22,21 +25,28 @@ namespace CommunityApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(BlogPost post)
+        public ActionResult Create(BlogPostViewModel post)
         {
             try
             {
-                post.CreatedBy = "admin";
-                post.CreatedDate = DateTime.Now;
-                post.IsActive = true;
-                post.UpdatedBy = post.CreatedBy;
-                post.UpdatedDate = post.CreatedDate;
+                BlogPost newPost = new BlogPost();
 
-                BlogService service = new BlogService();
-
-                if (service.CreatePost(post))
+                if (ModelState.IsValid)
                 {
-                    //success message
+                    newPost.Title = post.Title;
+                    newPost.Description = post.Description;
+                    newPost.CreatedBy = "admin";
+                    newPost.CreatedDate = DateTime.Now;
+                    newPost.IsActive = true;
+                    newPost.UpdatedBy = newPost.CreatedBy;
+                    newPost.UpdatedDate = newPost.CreatedDate;
+
+                    BlogService service = new BlogService();
+
+                    if (service.CreatePost(newPost))
+                    {
+                        RedirectToActionPermanent("Index", "Home");
+                    }
                 }
 
             }
