@@ -1,0 +1,28 @@
+﻿@model CommunityApp.Entity.ViewModel.BlogItemDto
+
+@{
+    ViewBag.Title = "Item";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <hr />
+    <h3>@Html.DisplayFor(item => item.Title)</h3>
+    <p>Author : @Html.DisplayFor(item => item.CreatedBy), Date : @Html.DisplayFor(item => item.CreatedDate)</p>
+    <hr />
+    @Html.Raw(Model.Description)
+</div>
+<div>
+    <h3>Comments</h3>
+    @if (Model.BlogPostComments != null)
+    {
+        foreach (var item in Model.BlogPostComments)
+        {
+            @Html.Raw(item.Comment)
+            <p>Commented By: @Html.Display(item.CreatedBy), Date : @Html.Display(item.CreatedDate.ToShortDateString())</p>
+        }
+    }
+
+    @Html.Partial("_BlogComment", new CommunityApp.Models.BlogCommentViewModel())
+
+</div>

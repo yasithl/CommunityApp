@@ -14,6 +14,12 @@ namespace CommunityApp.Entity
     
     public partial class BlogPost
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public BlogPost()
+        {
+            this.BlogPostComments = new HashSet<BlogPostComment>();
+        }
+    
         public long PostId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
@@ -22,5 +28,8 @@ namespace CommunityApp.Entity
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public string UpdatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedDate { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BlogPostComment> BlogPostComments { get; set; }
     }
 }

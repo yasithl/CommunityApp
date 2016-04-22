@@ -26,6 +26,8 @@
         <AssociationConnector Association="CommunityAppDbModel.FK_Forum_ForumCategory" ManuallyRouted="false" />
         <AssociationConnector Association="CommunityAppDbModel.FK_ForumMessage_Forum" ManuallyRouted="false" />
         <AssociationConnector Association="CommunityAppDbModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CommunityAppDbModel.BlogPostComment" Width="1.5" PointX="12" PointY="4.875" />
+        <AssociationConnector Association="CommunityAppDbModel.FK_BlogPostComments_BlogPost" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

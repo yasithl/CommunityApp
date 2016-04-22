@@ -67,6 +67,9 @@
     <Compile Include="BlogPost.cs">
       <DependentUpon>CommunityAppModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="BlogPostComment.cs">
+      <DependentUpon>CommunityAppModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="CommunityAppModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -100,6 +103,8 @@
     <Compile Include="sysdiagram.cs">
       <DependentUpon>CommunityAppModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\BlogItemCommentDto.cs" />
+    <Compile Include="ViewModel\BlogItemDto.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="CommunityAppModel.tt">

@@ -15,7 +15,7 @@ namespace CommunityApp.Controllers
         public ActionResult Index()
         {
             BlogService service = new BlogService();
-            
+
             return View(service.GetAllPosts());
         }
 
@@ -57,5 +57,13 @@ namespace CommunityApp.Controllers
 
             return View();
         }
+
+        public ActionResult Item(long id)
+        {
+            BlogService service = new BlogService();
+
+            return View(service.GetById(id));
+        }
+
     }
 }

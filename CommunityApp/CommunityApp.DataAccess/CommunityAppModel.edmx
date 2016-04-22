@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CommunityAppDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CommunityAppDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -95,6 +95,18 @@
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="UpdatedBy" Type="nvarchar" MaxLength="100" />
           <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="BlogPostComments">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PostID" Type="bigint" Nullable="false" />
+          <Property Name="Comment" Type="text" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Country">
           <Key>
@@ -203,6 +215,18 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <Association Name="FK_BlogPostComments_BlogPost">
+          <End Role="BlogPost" Type="Self.BlogPost" Multiplicity="1" />
+          <End Role="BlogPostComments" Type="Self.BlogPostComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BlogPost">
+              <PropertyRef Name="PostId" />
+            </Principal>
+            <Dependent Role="BlogPostComments">
+              <PropertyRef Name="PostID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Country_Region">
           <End Role="Region" Type="Self.Region" Multiplicity="1" />
           <End Role="Country" Type="Self.Country" Multiplicity="*" />
@@ -304,6 +328,7 @@
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BlogPost" EntityType="Self.BlogPost" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BlogPostComments" EntityType="Self.BlogPostComments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EventInfo" EntityType="Self.EventInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Expertise" EntityType="Self.Expertise" Schema="dbo" store:Type="Tables" />
@@ -312,6 +337,10 @@
           <EntitySet Name="ForumMessage" EntityType="Self.ForumMessage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Region" EntityType="Self.Region" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BlogPostComments_BlogPost" Association="Self.FK_BlogPostComments_BlogPost">
+            <End Role="BlogPost" EntitySet="BlogPost" />
+            <End Role="BlogPostComments" EntitySet="BlogPostComments" />
+          </AssociationSet>
           <AssociationSet Name="FK_Country_Region" Association="Self.FK_Country_Region">
             <End Role="Region" EntitySet="Region" />
             <End Role="Country" EntitySet="Country" />
@@ -341,8 +370,7 @@
             <End Role="ForumMessage" EntitySet="ForumMessage" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CommunityAppDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -434,6 +462,7 @@
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="UpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="BlogPostComments" Relationship="CommunityAppDbModel.FK_BlogPostComments_BlogPost" FromRole="BlogPost" ToRole="BlogPostComment" />
         </EntityType>
         <EntityType Name="Country">
           <Key>
@@ -656,7 +685,37 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="BlogPostComments" EntityType="CommunityAppDbModel.BlogPostComment" />
+          <AssociationSet Name="FK_BlogPostComments_BlogPost" Association="CommunityAppDbModel.FK_BlogPostComments_BlogPost">
+            <End Role="BlogPost" EntitySet="BlogPosts" />
+            <End Role="BlogPostComment" EntitySet="BlogPostComments" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="BlogPostComment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PostID" Type="Int64" Nullable="false" />
+          <Property Name="Comment" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="BlogPost" Relationship="CommunityAppDbModel.FK_BlogPostComments_BlogPost" FromRole="BlogPostComment" ToRole="BlogPost" />
+        </EntityType>
+        <Association Name="FK_BlogPostComments_BlogPost">
+          <End Type="CommunityAppDbModel.BlogPost" Role="BlogPost" Multiplicity="1" />
+          <End Type="CommunityAppDbModel.BlogPostComment" Role="BlogPostComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BlogPost">
+              <PropertyRef Name="PostId" />
+            </Principal>
+            <Dependent Role="BlogPostComment">
+              <PropertyRef Name="PostID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -873,6 +932,19 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="BlogPostComments">
+            <EntityTypeMapping TypeName="CommunityAppDbModel.BlogPostComment">
+              <MappingFragment StoreEntitySet="BlogPostComments">
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="PostID" ColumnName="PostID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

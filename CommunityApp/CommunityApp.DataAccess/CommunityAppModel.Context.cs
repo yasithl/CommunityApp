@@ -40,5 +40,6 @@ namespace CommunityApp.Entity
         public virtual DbSet<ForumMessage> ForumMessages { get; set; }
         public virtual DbSet<Region> Regions { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<BlogPostComment> BlogPostComments { get; set; }
     }
 }
