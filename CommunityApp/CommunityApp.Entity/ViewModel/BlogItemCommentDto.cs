@@ -15,6 +15,7 @@ namespace CommunityApp.Entity.ViewModel
         public System.DateTime CreatedDate { get; set; }
         public string UpdatedBy { get; set; }
         public System.DateTime UpdatedDate { get; set; }
+        public long ParentCommentID { get; set; }
 
     }
 }

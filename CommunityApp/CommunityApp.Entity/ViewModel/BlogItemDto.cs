@@ -20,8 +20,7 @@ namespace CommunityApp.Entity.ViewModel
         public Nullable<System.DateTime> UpdatedDate { get; set; }
         public ICollection<BlogItemCommentDto> BlogPostComments { get; set; }
 
-        //[UIHint("tinymce_comment")]
-        //[AllowHtml]
+        
         public string Comment { get; set; }
     }
 }

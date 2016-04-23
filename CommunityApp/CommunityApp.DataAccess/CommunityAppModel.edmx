@@ -19,7 +19,7 @@
           <Key>
             <PropertyRef Name="AlertId" />
           </Key>
-          <Property Name="AlertId" Type="bigint" Nullable="false" />
+          <Property Name="AlertId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AlertTitle" Type="nvarchar" MaxLength="200" />
           <Property Name="AlertDescription" Type="nvarchar(max)" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
@@ -103,6 +103,7 @@
           <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PostID" Type="bigint" Nullable="false" />
           <Property Name="Comment" Type="text" Nullable="false" />
+          <Property Name="ParentCommentID" Type="bigint" Nullable="false" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="UpdatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
@@ -703,6 +704,7 @@
           <Property Name="UpdatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="BlogPost" Relationship="CommunityAppDbModel.FK_BlogPostComments_BlogPost" FromRole="BlogPostComment" ToRole="BlogPost" />
+          <Property Name="ParentCommentID" Type="Int64" Nullable="false" />
         </EntityType>
         <Association Name="FK_BlogPostComments_BlogPost">
           <End Type="CommunityAppDbModel.BlogPost" Role="BlogPost" Multiplicity="1" />
@@ -935,6 +937,7 @@
           <EntitySetMapping Name="BlogPostComments">
             <EntityTypeMapping TypeName="CommunityAppDbModel.BlogPostComment">
               <MappingFragment StoreEntitySet="BlogPostComments">
+                <ScalarProperty Name="ParentCommentID" ColumnName="ParentCommentID" />
                 <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />

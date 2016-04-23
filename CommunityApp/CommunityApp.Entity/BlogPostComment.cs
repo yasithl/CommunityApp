@@ -21,6 +21,7 @@ namespace CommunityApp.Entity
         public System.DateTime CreatedDate { get; set; }
         public string UpdatedBy { get; set; }
         public System.DateTime UpdatedDate { get; set; }
+        public long ParentCommentID { get; set; }
     
         public virtual BlogPost BlogPost { get; set; }
     }

@@ -54,6 +54,7 @@ namespace CommunityApp.Business.Services
             try
             {
                 _blogCommentRepository.Add(postComment);
+                _unitOfWork.Commit();
                 flag = true;
             }
             catch { }
