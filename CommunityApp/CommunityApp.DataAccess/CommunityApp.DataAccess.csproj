@@ -61,7 +61,19 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CommunityAppModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DBInteractions\CommunityAppModelEntities.cs" />
+    <Compile Include="DBInteractions\DBFactory.cs" />
+    <Compile Include="DBInteractions\Disposable.cs" />
+    <Compile Include="DBInteractions\EntityRepositoryBase.cs" />
+    <Compile Include="DBInteractions\IDBFactory.cs" />
+    <Compile Include="DBInteractions\IEntityRepository.cs" />
+    <Compile Include="DBInteractions\IUnitOfWork.cs" />
+    <Compile Include="DBInteractions\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoryContracts\IBlogPostCommentRepository.cs" />
+    <Compile Include="RepositoryContracts\IBlogPostRepository.cs" />
+    <Compile Include="Repository\BlogPostCommentRepository.cs" />
+    <Compile Include="Repository\BlogPostRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CommunityApp.Entity\CommunityApp.Entity.csproj">
@@ -93,6 +105,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

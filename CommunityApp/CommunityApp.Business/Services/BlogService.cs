@@ -1,15 +1,24 @@
-﻿using CommunityApp.Entity;
+﻿using CommunityApp.Business.ServiceContracts;
+using CommunityApp.DataAccess.DBInteractions;
+using CommunityApp.DataAccess.RepositoryContracts;
+using CommunityApp.Entity;
 using CommunityApp.Entity.ViewModel;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace CommunityApp.Business.Services
 {
-    public class BlogService
+    public class BlogService : IBlogService
     {
-        public BlogService()
-        {
+        private readonly IBlogPostRepository _blogRepository;
+        private readonly IBlogPostCommentRepository _blogCommentRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
+        public BlogService(IBlogPostRepository blogRepository, IBlogPostCommentRepository blogCommentRepository, IUnitOfWork unitOfWork)
+        {
+            _blogRepository = blogRepository;
+            _blogCommentRepository = blogCommentRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public bool CreatePost(BlogPost post)
@@ -17,12 +26,10 @@ namespace CommunityApp.Business.Services
             bool flag = false;
             try
             {
-                using (CommunityAppDbEntities dbContext = new CommunityAppDbEntities())
-                {
-                    dbContext.BlogPosts.Add(post);
-                    dbContext.SaveChanges();
-                    flag = true;
-                }
+                _blogRepository.Add(post);
+                _unitOfWork.Commit();
+
+                flag = true;
             }
             catch { }
             
@@ -31,55 +38,14 @@ namespace CommunityApp.Business.Services
 
         public IEnumerable<BlogPost> GetAllPosts()
         {
-            IEnumerable<BlogPost> allPosts = null;
+            var tt = _blogRepository.GetAll().ToList();
 
-            using(CommunityAppDbEntities dbContext = new CommunityAppDbEntities())
-            {
-                allPosts = dbContext.BlogPosts.AsEnumerable().ToList();
-            }
-
-            return allPosts;
+            return tt;
         }
 
-        public BlogItemDto GetById(long id)
+        public BlogPost GetById(long id)
         {
-            BlogPost post = null;
-            BlogItemDto postViewModel = new BlogItemDto();
-
-            using (CommunityAppDbEntities dbContext = new CommunityAppDbEntities())
-            {
-                post = dbContext.BlogPosts.Where(x => x.PostId == id).SingleOrDefault();
-                postViewModel.CreatedBy = post.CreatedBy;
-                postViewModel.CreatedDate = post.CreatedDate;
-                postViewModel.Description = post.Description;
-                postViewModel.IsActive = post.IsActive;
-                postViewModel.PostId = post.PostId;
-                postViewModel.Title = post.Title;
-                postViewModel.UpdatedBy = post.UpdatedBy;
-                postViewModel.UpdatedDate = post.UpdatedDate;
-
-                if(post.BlogPostComments != null)
-                {
-                    postViewModel.BlogPostComments = new List<BlogItemCommentDto>();
-                    var postComments = post.BlogPostComments.ToList();
-
-                    for (int i = 0; i < postComments.Count; i++)
-                    {
-                        postViewModel.BlogPostComments.Add(new BlogItemCommentDto
-                        {
-                            Comment = postComments[i].Comment,
-                            CreatedBy = postComments[i].CreatedBy,
-                            CreatedDate = postComments[i].CreatedDate,
-                            ID = postComments[i].ID,
-                            PostID = postComments[i].PostID,
-                            UpdatedBy = postComments[i].UpdatedBy,
-                            UpdatedDate = postComments[i].UpdatedDate
-                        });
-                    }
-                }
-            }
-            
-            return postViewModel;
+            return _blogRepository.GetById(id);
         }
 
         public bool CreatePostComment(BlogPostComment postComment)
@@ -87,12 +53,8 @@ namespace CommunityApp.Business.Services
             bool flag = false;
             try
             {
-                using (CommunityAppDbEntities dbContext = new CommunityAppDbEntities())
-                {
-                    dbContext.BlogPostComments.Add(postComment);
-                    dbContext.SaveChanges();
-                    flag = true;
-                }
+                _blogCommentRepository.Add(postComment);
+                flag = true;
             }
             catch { }
 

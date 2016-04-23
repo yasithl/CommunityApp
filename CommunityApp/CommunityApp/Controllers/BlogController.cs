@@ -1,4 +1,5 @@
-﻿using CommunityApp.Business.Services;
+﻿using CommunityApp.Business.ServiceContracts;
+using CommunityApp.Business.Services;
 using CommunityApp.Entity;
 using CommunityApp.Entity.ViewModel;
 using CommunityApp.Models;
@@ -12,12 +13,16 @@ namespace CommunityApp.Controllers
 {
     public class BlogController : Controller
     {
+        private readonly IBlogService _blogService;
+
+        public BlogController(IBlogService blogService)
+        {
+            _blogService = blogService;
+        }
         // GET: Blog
         public ActionResult Index()
         {
-            BlogService service = new BlogService();
-
-            return View(service.GetAllPosts());
+            return View(_blogService.GetAllPosts());
         }
 
         public ActionResult Create()
@@ -42,9 +47,7 @@ namespace CommunityApp.Controllers
                     newPost.UpdatedBy = newPost.CreatedBy;
                     newPost.UpdatedDate = newPost.CreatedDate;
 
-                    BlogService service = new BlogService();
-
-                    if (service.CreatePost(newPost))
+                    if (_blogService.CreatePost(newPost))
                     {
                         return RedirectToActionPermanent("Index", "Home");
                     }
@@ -61,17 +64,13 @@ namespace CommunityApp.Controllers
 
         public ActionResult Item(long id)
         {
-            BlogService service = new BlogService();
-
-            return View(service.GetById(id));
+            return View(_blogService.GetById(id));
         }
 
         [HttpPost]
         //[ValidateInput(false)]
         public ActionResult Item(BlogItemDto comment)
         {
-            BlogService service = new BlogService();
-
             if (ModelState.IsValid)
             {
                 BlogPostComment postComment = new BlogPostComment();
@@ -82,12 +81,13 @@ namespace CommunityApp.Controllers
                 postComment.UpdatedBy = "admin";
                 postComment.UpdatedDate = DateTime.Now;
 
-                if (service.CreatePostComment(postComment))
+                if (_blogService.CreatePostComment(postComment))
                 {
                     return RedirectToActionPermanent("Index", "Blog");
                 }
             }
-            return View(service.GetById(comment.PostId));
+
+            return View(_blogService.GetById(comment.PostId));
         }
 
     }
