@@ -24,6 +24,7 @@ namespace CommunityApp.Models
         [Required]
         [Display(Name = "Skills")]
         public string Skills { get; set; }
+
     }
 
     public class ExternalLoginListViewModel
