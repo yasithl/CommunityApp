@@ -1,6 +1,6 @@
 ﻿@model CommunityApp.Models.BlogCommentViewModel
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Item", "Blog", new { id = Model.PostId }, FormMethod.Post)) 
 {
     @Html.AntiForgeryToken()
     

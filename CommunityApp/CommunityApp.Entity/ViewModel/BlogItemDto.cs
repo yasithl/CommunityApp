@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace CommunityApp.Entity.ViewModel
 {
@@ -17,5 +19,9 @@ namespace CommunityApp.Entity.ViewModel
         public string UpdatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedDate { get; set; }
         public ICollection<BlogItemCommentDto> BlogPostComments { get; set; }
+
+        //[UIHint("tinymce_comment")]
+        //[AllowHtml]
+        public string Comment { get; set; }
     }
 }

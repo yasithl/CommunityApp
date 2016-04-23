@@ -9,7 +9,9 @@ namespace CommunityApp.Models
 {
     public class BlogCommentViewModel
     {
-        [UIHint("tinymce_comment"), AllowHtml]
+        public long PostId { get; set; }
+        [UIHint("tinymce_comment")]
+        [AllowHtml]
         public string Comment { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using CommunityApp.Business.Services;
 using CommunityApp.Entity;
+using CommunityApp.Entity.ViewModel;
 using CommunityApp.Models;
 using System;
 using System.Collections.Generic;
@@ -45,7 +46,7 @@ namespace CommunityApp.Controllers
 
                     if (service.CreatePost(newPost))
                     {
-                        RedirectToActionPermanent("Index", "Home");
+                        return RedirectToActionPermanent("Index", "Home");
                     }
                 }
 
@@ -63,6 +64,30 @@ namespace CommunityApp.Controllers
             BlogService service = new BlogService();
 
             return View(service.GetById(id));
+        }
+
+        [HttpPost]
+        //[ValidateInput(false)]
+        public ActionResult Item(BlogItemDto comment)
+        {
+            BlogService service = new BlogService();
+
+            if (ModelState.IsValid)
+            {
+                BlogPostComment postComment = new BlogPostComment();
+                postComment.PostID = comment.PostId;
+                postComment.Comment = comment.Comment;
+                postComment.CreatedBy = "admin";
+                postComment.CreatedDate = DateTime.Now;
+                postComment.UpdatedBy = "admin";
+                postComment.UpdatedDate = DateTime.Now;
+
+                if (service.CreatePostComment(postComment))
+                {
+                    return RedirectToActionPermanent("Index", "Blog");
+                }
+            }
+            return View(service.GetById(comment.PostId));
         }
 
     }
