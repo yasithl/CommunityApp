@@ -54,15 +54,15 @@ namespace CommunityApp
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "473452066189703",
+               appSecret: "6375050b59f87b4e1985af3955fcc7ad");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "795916778803-q75i6sdipe2bqnpgs6rvt129ttg565iv.apps.googleusercontent.com",
+                ClientSecret = "UtusWj5xy68z-BysBoMKt7fl",
+            });
         }
     }
 }
