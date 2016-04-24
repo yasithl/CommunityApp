@@ -5,9 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@foreach (var item in Model) {
-    <h3>@Html.ActionLink(item.Title, "Item", new { Id = item.PostId })</h3>
-    <p>Author : @Html.DisplayFor(modelItem => item.CreatedBy), Date : @Html.DisplayFor(modelItem => item.CreatedDate)</p>
-    <hr />
-    @Html.Raw(item.Description)
-}
+<div class="form-horizontal">
+    
+    @foreach (var item in Model)
+    {
+        <h3>@Html.ActionLink(item.Title, "Item", new { Id = item.PostId })</h3>
+        <p>Author : @Html.DisplayFor(modelItem => item.CreatedBy), Date : @Html.DisplayFor(modelItem => item.CreatedDate)</p>
+        <hr />
+        @Html.Raw(item.Description)
+    }
+</div>

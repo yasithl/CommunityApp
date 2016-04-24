@@ -20,13 +20,18 @@ namespace CommunityApp
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
+                      "~/Scripts/bootstrap.min.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/slider").Include(
+                "~/Scripts/jquery.bxslider.min.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/half-slider.css",
-                      "~/Content/site.css"));
+                      "~/Content/bootstrap.min.css",
+                      "~/Content/bootstrap-theme.min.css",
+                      "~/Content/font-awesome.min.css",
+                      "~/Content/jquery.bxslider.css",
+                      "~/Content/style.css"));
         }
     }
 }
