@@ -12,6 +12,7 @@ namespace CommunityApp.Models
         public long PostId { get; set; }
         [UIHint("tinymce_comment")]
         [AllowHtml]
+        [Required]
         public string Comment { get; set; }
     }
 }

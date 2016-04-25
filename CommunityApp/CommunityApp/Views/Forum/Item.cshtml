@@ -1,0 +1,64 @@
+﻿@model CommunityApp.Entity.ViewModel.ForumItemDto
+
+@{
+    ViewBag.Title = "Item";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="light-body">
+    <div class="container">
+        <div>
+            <h2 class="recentPosts">@Html.DisplayFor(item => item.QuestionTitle)</h2>
+            <p>Author : @Html.DisplayFor(item => item.CreatedBy), Date : @Html.DisplayFor(item => item.CreatedDate)</p>
+            <hr />
+            @Html.Raw(Model.QuestionDescription)
+        </div>
+    </div>
+</div>
+
+<div class="dark-body">
+    <div class="container">
+        <div class="topLine clearfix">
+            <h2 class="recentPosts">Add your Answer</h2>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                @Html.HiddenFor(item => item.ForumId)
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Answer, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Answer, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Answer, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Create" class="btn btn btn-blue" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div class="topLine clearfix">
+                @if (Model.ForumMessages != null)
+                {
+
+                    <h2 class="recentPosts">Comments</h2>
+                    foreach (var item in Model.ForumMessages)
+                    {
+                        <hr />
+                        @Html.Raw(item.MessageDescription)
+                        <p>Commented By: @item.CreatedBy, Date : @item.CreatedDate.Value.ToShortDateString()</p>
+                    }
+
+                }
+            </div>
+        </div>
+    </div>
+</div>

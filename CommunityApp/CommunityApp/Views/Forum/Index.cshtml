@@ -1,0 +1,22 @@
+﻿@model IEnumerable<CommunityApp.Entity.Forum>
+
+@{
+    ViewBag.Title = "Forum";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="light-body">
+    <div class="container">
+        <h2 class="recentPosts">Recent Forum Posts</h2>
+        <div class="form-horizontal">
+
+            @foreach (var item in Model)
+            {
+                <h2 class="recentPosts">@Html.ActionLink(item.QuestionTitle, "Item", new { Id = item.ForumId })</h2>
+                <p>Author : @Html.DisplayFor(modelItem => item.CreatedBy), Date : @Html.DisplayFor(modelItem => item.CreatedDate)</p>
+                <hr />
+                @Html.Raw(item.QuestionDescription)
+            }
+        </div>
+    </div>
+</div>

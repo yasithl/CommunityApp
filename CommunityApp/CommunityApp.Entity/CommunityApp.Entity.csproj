@@ -106,6 +106,8 @@
     </Compile>
     <Compile Include="ViewModel\BlogItemCommentDto.cs" />
     <Compile Include="ViewModel\BlogItemDto.cs" />
+    <Compile Include="ViewModel\ForumItemDto.cs" />
+    <Compile Include="ViewModel\ForumMessageDto.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="CommunityAppModel.tt">

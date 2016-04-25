@@ -51,7 +51,11 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceContracts\IBlogService.cs" />
+    <Compile Include="ServiceContracts\IEventService.cs" />
+    <Compile Include="ServiceContracts\IForumService.cs" />
     <Compile Include="Services\BlogService.cs" />
+    <Compile Include="Services\EventService.cs" />
+    <Compile Include="Services\ForumService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CommunityApp.Common\CommunityApp.Common.csproj">

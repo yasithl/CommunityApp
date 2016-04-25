@@ -7,12 +7,16 @@ using System.Web.Mvc;
 
 namespace CommunityApp.Models
 {
-    public class BlogPostViewModel
+    public class ForumViewModel
     {
         [Required]
-        public string Title { get; set; }
+        public long ForumCategoryId { get; set; }
+        [Required]
+        public string QuestionTitle { get; set; }
         [UIHint("tinymce_full"), AllowHtml]
         [Required]
-        public string Description { get; set; }
+        public string QuestionDescription { get; set; }
+
+        public List<SelectListItem> ForumCategoryList { get; set; }
     }
 }

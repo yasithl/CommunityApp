@@ -46,7 +46,15 @@ namespace CommunityApp.App_Start
             .RegisterType<IUnitOfWork, UnitOfWork>(new HierarchicalLifetimeManager())
             .RegisterType<IBlogService, BlogService>(new HierarchicalLifetimeManager())
             .RegisterType<IBlogPostRepository, BlogPostRepository>(new HierarchicalLifetimeManager())
-            .RegisterType<IBlogPostCommentRepository, BlogPostCommentRepository>(new HierarchicalLifetimeManager());
+            .RegisterType<IBlogPostCommentRepository, BlogPostCommentRepository>(new HierarchicalLifetimeManager())
+
+            .RegisterType<IForumService, ForumService>(new HierarchicalLifetimeManager())
+            .RegisterType<IEventService, EventService>(new HierarchicalLifetimeManager())
+
+            .RegisterType<IForumMessageRepository, ForumMessageRepository>(new HierarchicalLifetimeManager())
+            .RegisterType<IForumCategoryRepository, ForumCategoryRepository>(new HierarchicalLifetimeManager())
+            .RegisterType<IForumRepository, ForumRepository>(new HierarchicalLifetimeManager())
+            ;
 
             container.RegisterType<AccountController>(new InjectionConstructor());
             container.RegisterType<ManageController>(new InjectionConstructor());
