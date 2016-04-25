@@ -36,11 +36,10 @@
             <li>
                 @Html.ActionLink("Contact", "Contact", "Home")
             </li>
-            <li>
-                @Html.ActionLink("Sign in", "Login", "Account")
-                <a href="#"></a>
-            </li>
+            <li></li>
         </ul>
+        @Html.Partial("_LoginPartial")
+
     </div>
 
     <div class="pull-right header-right">

@@ -233,17 +233,17 @@ strong {
 .header .navbar-nav {
     margin: 0;
     padding: 0;
-    width: 100%
+    --width: 100%
 }
 
 .header .navbar-nav>li {
     padding: 6px 45px 7px 0
 }
 
-.header .navbar-nav>li:last-child {
+/*.header .navbar-nav>li:last-child {
     padding-right: 0;
     float: right
-}
+}*/
 
 .header .navbar-nav>li>a {
     padding: 0
