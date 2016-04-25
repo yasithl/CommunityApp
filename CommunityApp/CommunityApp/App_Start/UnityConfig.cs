@@ -6,6 +6,7 @@ using CommunityApp.Business.ServiceContracts;
 using CommunityApp.DataAccess.RepositoryContracts;
 using CommunityApp.Business.Services;
 using CommunityApp.DataAccess.Repository;
+using CommunityApp.Controllers;
 
 namespace CommunityApp.App_Start
 {
@@ -46,6 +47,9 @@ namespace CommunityApp.App_Start
             .RegisterType<IBlogService, BlogService>(new HierarchicalLifetimeManager())
             .RegisterType<IBlogPostRepository, BlogPostRepository>(new HierarchicalLifetimeManager())
             .RegisterType<IBlogPostCommentRepository, BlogPostCommentRepository>(new HierarchicalLifetimeManager());
+
+            container.RegisterType<AccountController>(new InjectionConstructor());
+            container.RegisterType<ManageController>(new InjectionConstructor());
         }
     }
 }

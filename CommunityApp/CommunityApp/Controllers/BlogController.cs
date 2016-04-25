@@ -64,55 +64,19 @@ namespace CommunityApp.Controllers
 
         public ActionResult Item(long id)
         {
-            BlogPost post = _blogService.GetById(id);
-
-            BlogItemDto itemDto = new BlogItemDto
-            {
-                CreatedBy = post.CreatedBy,
-                CreatedDate = post.CreatedDate,
-                Description = post.Description,
-                IsActive = post.IsActive,
-                PostId = post.PostId,
-                Title = post.Title,
-                UpdatedBy = post.UpdatedBy,
-                UpdatedDate = post.UpdatedDate
-            };
-
-            if(post.BlogPostComments.Any())
-            {
-                var existingComments = post.BlogPostComments.ToList();
-
-                itemDto.BlogPostComments = new List<BlogItemCommentDto>();
-
-                for (int i = 0; i < existingComments.Count; i++)
-                {
-                    itemDto.BlogPostComments.Add(new BlogItemCommentDto
-                    {
-                        Comment = existingComments[i].Comment,
-                        CreatedBy = existingComments[i].CreatedBy,
-                        CreatedDate = existingComments[i].CreatedDate,
-                        ID = existingComments[i].ID,
-                        PostID = existingComments[i].PostID,
-                        UpdatedBy = existingComments[i].UpdatedBy,
-                        UpdatedDate = existingComments[i].UpdatedDate,
-                        ParentCommentID = existingComments[i].ParentCommentID
-                    });
-                }
-                
-            }
+            BlogItemDto itemDto = _blogService.GetBlogDtoById(id);
 
             return View(itemDto);
         }
 
         [HttpPost]
-        //[ValidateInput(false)]
         public ActionResult Item(long id, string comment)
         {
+            if (string.IsNullOrEmpty(comment))
+                ModelState.AddModelError("Comment", "Comment is required.");
             if (ModelState.IsValid)
             {
                 BlogPostComment postComment = new BlogPostComment();
-                //postComment.PostID = comment.PostId;
-                //postComment.Comment = comment.Comment;
                 postComment.PostID = id;
                 postComment.Comment = comment;
                 postComment.CreatedBy = "admin";
@@ -125,8 +89,8 @@ namespace CommunityApp.Controllers
                     return RedirectToActionPermanent("Index", "Blog");
                 }
             }
-
-            return View(_blogService.GetById(id));
+            
+            return View(_blogService.GetBlogDtoById(id));
         }
 
     }

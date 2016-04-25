@@ -22,7 +22,7 @@
                 @Html.ActionLink("Home", "Index", "Home")
             </li>
             <li>
-                <a href="about.html">About Us</a>
+                @Html.ActionLink("About Us", "About", "Home")
             </li>
             <li>
                 <a href="partners.html">Partners</a>
@@ -34,10 +34,11 @@
                 @Html.ActionLink("Blog", "Index", "Blog")
             </li>
             <li>
-                <a href="contact.html">Contact</a>
+                @Html.ActionLink("Contact", "Contact", "Home")
             </li>
             <li>
-                <a href="#">Sign in</a>
+                @Html.ActionLink("Sign in", "Login", "Account")
+                <a href="#"></a>
             </li>
         </ul>
     </div>

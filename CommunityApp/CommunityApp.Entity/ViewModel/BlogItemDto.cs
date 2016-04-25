@@ -20,7 +20,7 @@ namespace CommunityApp.Entity.ViewModel
         public Nullable<System.DateTime> UpdatedDate { get; set; }
         public ICollection<BlogItemCommentDto> BlogPostComments { get; set; }
 
-        
+        [Required]
         public string Comment { get; set; }
     }
 }
