@@ -222,6 +222,8 @@
     <Content Include="Content\jquery.bxslider.css" />
     <Content Include="Content\style-min.css" />
     <Content Include="Content\style.css" />
+    <Content Include="Content\zocial.css" />
+    <Content Include="Content\zocial.svg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -259,6 +261,9 @@
     <Content Include="fonts\SegoeUI.eot" />
     <Content Include="fonts\SegoeUI.ttf" />
     <Content Include="fonts\SegoeUI.woff" />
+    <Content Include="Content\zocial.eot" />
+    <Content Include="Content\zocial.ttf" />
+    <Content Include="Content\zocial.woff" />
     <None Include="Properties\PublishProfiles\PublishCommunityApp.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

@@ -171,7 +171,7 @@
           <Key>
             <PropertyRef Name="ForumCategoryId" />
           </Key>
-          <Property Name="ForumCategoryId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ForumCategoryId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ForumCategoryName" Type="nvarchar" MaxLength="100" />
           <Property Name="ForumCategoryParentId" Type="bigint" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
