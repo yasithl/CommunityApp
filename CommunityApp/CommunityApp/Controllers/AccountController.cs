@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using CommunityApp.Models;
+using CommunityApp.Business.ServiceContracts;
 
 namespace CommunityApp.Controllers
 {
@@ -20,9 +21,10 @@ namespace CommunityApp.Controllers
 
         public AccountController()
         {
+            
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;

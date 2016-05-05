@@ -53,9 +53,11 @@
     <Compile Include="ServiceContracts\IBlogService.cs" />
     <Compile Include="ServiceContracts\IEventService.cs" />
     <Compile Include="ServiceContracts\IForumService.cs" />
+    <Compile Include="ServiceContracts\IUserService.cs" />
     <Compile Include="Services\BlogService.cs" />
     <Compile Include="Services\EventService.cs" />
     <Compile Include="Services\ForumService.cs" />
+    <Compile Include="Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CommunityApp.Common\CommunityApp.Common.csproj">

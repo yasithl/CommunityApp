@@ -54,6 +54,9 @@ namespace CommunityApp.App_Start
             .RegisterType<IForumMessageRepository, ForumMessageRepository>(new HierarchicalLifetimeManager())
             .RegisterType<IForumCategoryRepository, ForumCategoryRepository>(new HierarchicalLifetimeManager())
             .RegisterType<IForumRepository, ForumRepository>(new HierarchicalLifetimeManager())
+
+            .RegisterType<IUserRepository, UserRepository>(new HierarchicalLifetimeManager())
+            .RegisterType<IUserService, UserService>(new HierarchicalLifetimeManager())
             ;
 
             container.RegisterType<AccountController>(new InjectionConstructor());
