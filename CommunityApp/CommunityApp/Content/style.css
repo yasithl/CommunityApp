@@ -218,7 +218,7 @@ strong {
 .header .navbar-nav {
   margin: 0;
   padding: 0;
-  width: 100%;
+  --width: 100%;
 }
 .header .navbar-nav > li {
   padding: 6px 45px 7px 0;

@@ -31,7 +31,7 @@ namespace CommunityApp
                       "~/Content/bootstrap-theme.min.css",
                       "~/Content/font-awesome.min.css",
                       "~/Content/jquery.bxslider.css",
-                      "~/Content/zocial.css",
+                      "~/Content/bootstrap-social.css",
                       "~/Content/style.css"));
         }
     }
