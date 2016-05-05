@@ -58,6 +58,10 @@ namespace CommunityApp.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
+            //
+            //UserManager.AddToRole(UserManager.FindByName("yasithac@gmail.com").Id, "Admin");
+            
+            //
             return View();
         }
 

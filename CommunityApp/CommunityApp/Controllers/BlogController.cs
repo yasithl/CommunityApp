@@ -3,6 +3,7 @@ using CommunityApp.Business.Services;
 using CommunityApp.Entity;
 using CommunityApp.Entity.ViewModel;
 using CommunityApp.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,14 +23,17 @@ namespace CommunityApp.Controllers
         // GET: Blog
         public ActionResult Index()
         {
+            
             return View(_blogService.GetAllPosts());
         }
 
+        [Authorize]
         public ActionResult Create()
         {
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult Create(BlogPostViewModel post)
         {
@@ -41,10 +45,10 @@ namespace CommunityApp.Controllers
                 {
                     newPost.Title = post.Title;
                     newPost.Description = post.Description;
-                    newPost.CreatedBy = "admin";
+                    newPost.CreatedBy = User.Identity.GetUserName();
                     newPost.CreatedDate = DateTime.Now;
                     newPost.IsActive = true;
-                    newPost.UpdatedBy = newPost.CreatedBy;
+                    newPost.UpdatedBy = User.Identity.GetUserName();
                     newPost.UpdatedDate = newPost.CreatedDate;
 
                     if (_blogService.CreatePost(newPost))
@@ -69,6 +73,7 @@ namespace CommunityApp.Controllers
             return View(itemDto);
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult Item(long id, string comment)
         {
@@ -79,9 +84,9 @@ namespace CommunityApp.Controllers
                 BlogPostComment postComment = new BlogPostComment();
                 postComment.PostID = id;
                 postComment.Comment = comment;
-                postComment.CreatedBy = "admin";
+                postComment.CreatedBy = User.Identity.GetUserName();
                 postComment.CreatedDate = DateTime.Now;
-                postComment.UpdatedBy = "admin";
+                postComment.UpdatedBy = User.Identity.GetUserName();
                 postComment.UpdatedDate = DateTime.Now;
 
                 if (_blogService.CreatePostComment(postComment))
