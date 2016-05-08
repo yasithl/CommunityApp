@@ -10,5 +10,6 @@ namespace CommunityApp.Business.ServiceContracts
     public interface IUserService
     {
         IEnumerable<AspNetUser> GetAllUsers();
+        AspNetUser GetUserById(string id);
     }
 }

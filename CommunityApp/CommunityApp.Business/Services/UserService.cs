@@ -25,5 +25,10 @@ namespace CommunityApp.Business.Services
         {
             return _userRepository.GetAll();
         }
+
+        public AspNetUser GetUserById(string id)
+        {
+            return _userRepository.Get(x => x.Id == id);
+        }
     }
 }
