@@ -69,7 +69,7 @@ namespace CommunityApp.Controllers
                         //Check for Delete
                         string[] deleteRoles = existRoleNames.Except(SelectedRoles).ToArray();
 
-                        if (deleteRoles != null)
+                        if (deleteRoles != null && deleteRoles.Length > 0)
                         {
                             UserManager.RemoveFromRoles(id, deleteRoles);
                         }
@@ -77,7 +77,7 @@ namespace CommunityApp.Controllers
                         //Check for Insert
                         string[] insertRoles = SelectedRoles.Except(existRoleNames).ToArray();
 
-                        if (insertRoles != null)
+                        if (insertRoles != null && insertRoles.Length > 0)
                         {
                             UserManager.AddToRoles(id, insertRoles);
                         }
