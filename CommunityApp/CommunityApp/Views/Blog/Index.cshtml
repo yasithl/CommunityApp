@@ -5,18 +5,96 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="light-body">
+<div class="title-container">
     <div class="container">
-        <h2 class="recentPosts">Most recent posts</h2>
-        <div class="form-horizontal">
+        <div class="row">
+            <div class="col-md-8">
+                <h1>Recent Blog Posts</h1>
+            </div>
+            <div class="col-md-4">
+                <div class="input-group blog-search">
+                    <input type="text" class="form-control" placeholder="Search blog..">
+                    <span class="input-group-btn">
+                        <button class="btn"><i class="fa fa-search"></i></button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-            @foreach (var item in Model)
-            {
-                <h2 class="recentPosts">@Html.ActionLink(item.Title, "Item", new { Id = item.PostId })</h2>
-                <p>Author : @Html.DisplayFor(modelItem => item.CreatedBy), Date : @Html.DisplayFor(modelItem => item.CreatedDate)</p>
-                <hr />
-                @Html.Raw(item.Description)
-            }
+<div class="inner-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+
+                @foreach (var item in Model)
+                {
+                    <div class="blogPost">
+                        <h2>@Html.ActionLink(item.Title, "Item", new { Id = item.PostId })</h2>
+                        <div class="blogMeta">
+                            @*<div class="blogViews pull-right"><i class="fa fa-eye"></i> 50</div>*@
+                            <div class="blogComments pull-right"><i class="fa fa-comments"></i> @Html.DisplayFor(modelItem=> item.BlogPostComments.Count)</div>
+                            by <span class="blogAuthor">@Html.DisplayFor(modelItem => item.CreatedBy)</span> @Html.DisplayFor(modelItem => item.CreatedDate)
+                        </div>
+                        @*<div class="blogImg"><img src="images/blogL01.jpg"></div>*@
+                        @Html.Raw(item.Description)
+                        <p class="readMore"><a href="#">Continue Reading <i class="fa fa-arrow-circle-right"></i></a></p>
+                        @*<div class="postTags">
+                            <label class="label label-badge">Windowsphone</label> <label class="label label-badge">Windowsphone 10</label>
+                        </div>*@
+                    </div>
+                }
+                @*<div class="pages">
+                    <ul>
+                        <li class="pull-left"><a href="#"><i class="fa fa-angle-left"></i> Previous</a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li>...</li>
+                        <li><a href="#">48</a></li>
+                        <li class="pull-right"><a href="#">Next <i class="fa fa-angle-right"></i></a></li>
+                    </ul>
+                </div>*@
+            </div>
+            <div class="col-md-3 sidebar">
+                <div class="sidebar-widget sidebar-posts">
+                    <h2>Popular Posts</h2>
+                    <div class="blogSummary">
+                        @*<div class="blogImg pull-left"><img src="images/blog04.png"></div>*@
+                        <h3><a href="#">Optimizing document search using Machine Learning and Text Analytics</a></h3>
+                        <div class="blogMeta">
+                            @*<div class="blogViews pull-right"><i class="fa fa-eye"></i> 50</div>*@
+                            <div class="blogComments pull-right"><i class="fa fa-comments"></i> 20</div>
+                            April 19, 2016
+                        </div>
+                    </div>
+                    <div class="blogSummary">
+                        @*<div class="blogImg pull-left"><img src="images/blog04.png"></div>*@
+                        <h3><a href="#">Optimizing document search using Machine Learning and Text Analytics</a></h3>
+                        <p class="blogMeta">April 19, 2016</p>
+                    </div>
+                    <div class="blogSummary">
+                        @*<div class="blogImg pull-left"><img src="images/blog04.png"></div>*@
+                        <h3><a href="#">Optimizing document search using Machine Learning and Text Analytics</a></h3>
+                        <p class="blogMeta">April 19, 2016</p>
+                    </div>
+                </div>
+                <div class="sidebar-widget sidebar-posts">
+                    <h2>Posts' Tag</h2>
+                    <div class="postTags">
+                        <label class="label label-badge">Windowsphone</label>
+                        <label class="label label-badge">WP10</label>
+                        <label class="label label-badge">Test</label>
+                        <label class="label label-badge">Tag A</label>
+                        <label class="label label-badge">Tag B</label>
+                        <label class="label label-badge">Windows</label>
+                        <label class="label label-badge">Windowsphone 10</label>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
