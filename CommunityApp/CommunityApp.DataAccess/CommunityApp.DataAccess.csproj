@@ -72,12 +72,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryContracts\IBlogPostCommentRepository.cs" />
     <Compile Include="RepositoryContracts\IBlogPostRepository.cs" />
+    <Compile Include="RepositoryContracts\IEventInfoRepository.cs" />
     <Compile Include="RepositoryContracts\IForumCategoryRepository.cs" />
     <Compile Include="RepositoryContracts\IForumMessageRepository.cs" />
     <Compile Include="RepositoryContracts\IForumRepository.cs" />
     <Compile Include="RepositoryContracts\IUserRepository.cs" />
     <Compile Include="Repository\BlogPostCommentRepository.cs" />
     <Compile Include="Repository\BlogPostRepository.cs" />
+    <Compile Include="Repository\EventInfoRepository.cs" />
     <Compile Include="Repository\ForumCategoryRepository.cs" />
     <Compile Include="Repository\ForumMessageRepository.cs" />
     <Compile Include="Repository\ForumRepository.cs" />

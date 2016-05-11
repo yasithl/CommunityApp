@@ -44,18 +44,18 @@ namespace CommunityApp.App_Start
             // TODO: Register your types here
             container.RegisterType<IDBFactory, DBFactory>(new HierarchicalLifetimeManager())
             .RegisterType<IUnitOfWork, UnitOfWork>(new HierarchicalLifetimeManager())
-            .RegisterType<IBlogService, BlogService>(new HierarchicalLifetimeManager())
-            .RegisterType<IBlogPostRepository, BlogPostRepository>(new HierarchicalLifetimeManager())
+            
             .RegisterType<IBlogPostCommentRepository, BlogPostCommentRepository>(new HierarchicalLifetimeManager())
-
-            .RegisterType<IForumService, ForumService>(new HierarchicalLifetimeManager())
-            .RegisterType<IEventService, EventService>(new HierarchicalLifetimeManager())
-
-            .RegisterType<IForumMessageRepository, ForumMessageRepository>(new HierarchicalLifetimeManager())
+            .RegisterType<IBlogPostRepository, BlogPostRepository>(new HierarchicalLifetimeManager())
+            .RegisterType<IEventInfoRepository, EventInfoRepository>(new HierarchicalLifetimeManager())
             .RegisterType<IForumCategoryRepository, ForumCategoryRepository>(new HierarchicalLifetimeManager())
+            .RegisterType<IForumMessageRepository, ForumMessageRepository>(new HierarchicalLifetimeManager())
             .RegisterType<IForumRepository, ForumRepository>(new HierarchicalLifetimeManager())
-
             .RegisterType<IUserRepository, UserRepository>(new HierarchicalLifetimeManager())
+
+            .RegisterType<IBlogService, BlogService>(new HierarchicalLifetimeManager())
+            .RegisterType<IEventService, EventService>(new HierarchicalLifetimeManager())
+            .RegisterType<IForumService, ForumService>(new HierarchicalLifetimeManager())
             .RegisterType<IUserService, UserService>(new HierarchicalLifetimeManager())
             ;
 

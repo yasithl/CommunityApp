@@ -21,7 +21,10 @@ namespace CommunityApp
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.min.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/respond.js",
+                      "~/Scripts/moment.min.js",
+                      "~/Scripts/bootstrap-datetimepicker.min.js"
+                      ));
 
             bundles.Add(new ScriptBundle("~/bundles/slider").Include(
                 "~/Scripts/jquery.bxslider.min.js"));
@@ -32,7 +35,9 @@ namespace CommunityApp
                       "~/Content/font-awesome.min.css",
                       "~/Content/jquery.bxslider.css",
                       "~/Content/bootstrap-social.css",
-                      "~/Content/style.css"));
+                      "~/Content/style.css",
+                      "~/Content/bootstrap-datetimepicker.min.css"
+                      ));
         }
     }
 }
