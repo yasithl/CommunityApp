@@ -5,18 +5,113 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="light-body">
+<div class="title-container">
     <div class="container">
-        <h2 class="recentPosts">Recent Forum Posts</h2>
-        <div class="form-horizontal">
+        <div class="row">
+            <div class="col-md-4 col-sm-3 col-xs-12">
+                <h1>Forum</h1>
+            </div>
+            <div class="col-md-8 col-sm-9 col-xs-12">
+                <div class="row">
+                    <div class="col-md-8 col-xs-7">
+                        <div class="forum-search">
+                            <div class="input-group">
+                                <input type="text" class="form-control input-lg" placeholder="Search forum questions..">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-lg"><i class="fa fa-search"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-xs-5">
+                        <div class="forum-ask">
+                            <input type="button" title="Ask Question" class="btn btn-lg display-block" value="Ask Question" onclick="location.href='@Url.Action("Create", "Forum")'" />
+                            @*<button class="btn btn-lg display-block"></button>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-            @foreach (var item in Model)
-            {
-                <h2 class="recentPosts">@Html.ActionLink(item.QuestionTitle, "Item", new { Id = item.ForumId })</h2>
-                <p>Author : @Html.DisplayFor(modelItem => item.CreatedBy), Date : @Html.DisplayFor(modelItem => item.CreatedDate)</p>
-                <hr />
-                @Html.Raw(item.QuestionDescription)
-            }
+
+        </div>
+    </div>
+</div>
+
+<div class="inner-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="forumPost">
+                    @foreach (var item in Model)
+                    {
+                        <div class="row">
+                            @*<div class="col-md-2 col-sm-2 col-xs-2">
+                                <div class="votes">60 <span>Votes</span></div>
+                            </div>
+                            <div class="col-md-10 col-sm-10 col-xs-10">*@
+                            <div class="col-md-10 col-sm-12 col-xs-12">
+                                <h2>@Html.ActionLink(item.QuestionTitle, "Item", new { Id = item.ForumId })</h2>
+                                <div class="breadcrumb"><a href="#">SharePoint</a>  <i class="fa fa-angle-right"></i>  <a href="#">SharePoint 2013 - Development and Programming</a></div>
+                                <p>@Html.Raw(item.QuestionDescription)
+                                    <span class="readMore"><a href="#">Continue Reading <i class="fa fa-arrow-circle-right"></i></a></span>
+                                </p>
+                                <div class="forumFooter">Unanswered | <strong>@Html.DisplayFor(modelItem => item.ForumMessages.Count)</strong> Replies | @*<strong>144</strong> Views |*@ Created by <a href="#">@Html.DisplayFor(modelItem => item.CreatedBy)</a> - @Html.DisplayFor(modelItem => item.CreatedDate) </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                @*<div class="pages">
+                    <ul>
+                        <li class="pull-left"><a href="#"><i class="fa fa-angle-left"></i> Previous</a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li>...</li>
+                        <li><a href="#">48</a></li>
+                        <li class="pull-right"><a href="#">Next <i class="fa fa-angle-right"></i></a></li>
+                    </ul>
+                </div>*@
+            </div>
+            <div class="col-md-3 sidebar">
+                <div class="sidebar-widget sidebar-topPeople">
+                    <h2>Top Answerers <span>(Last 30 days)</span></h2>
+                    <div class="personData">
+                        <div class="personImg pull-left"><img src="images/john-doe.jpg"></div>
+                        <div class="personName">
+                            John Doe
+                            <div class="personCount">60 answers</div>
+                        </div>
+                    </div>
+                    <div class="personData">
+                        <div class="personImg pull-left"><img src="images/john-doe.jpg"></div>
+                        <div class="personName">
+                            John Doe
+                            <div class="personCount">60 answers</div>
+                        </div>
+                    </div>
+                    <div class="personData">
+                        <div class="personImg pull-left"><img src="images/john-doe.jpg"></div>
+                        <div class="personName">
+                            John Doe
+                            <div class="personCount">60 answers</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-widget sidebar-posts">
+                    <h2>Posts' Tag</h2>
+                    <div class="postTags">
+                        <label class="label label-badge">Windowsphone</label>
+                        <label class="label label-badge">WP10</label>
+                        <label class="label label-badge">Test</label>
+                        <label class="label label-badge">Tag A</label>
+                        <label class="label label-badge">Tag B</label>
+                        <label class="label label-badge">Windows</label>
+                        <label class="label label-badge">Windowsphone 10</label>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
