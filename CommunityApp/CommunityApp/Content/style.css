@@ -725,6 +725,37 @@ strong {
   border-bottom-width: 1px;
   border-bottom-style: dotted;
 }
+
+/*Events*/
+.eventSummary{
+    background-color: #fff;
+    padding : 10px 10px 10px;
+}
+.eventSummary .blogImg {
+  margin-bottom: 15px;
+}
+.eventSummary .blogImg img {
+  width: 100%;
+  height: auto;
+}
+.eventSummary h3 {
+  font-size: 17px;
+  color: #3498db;
+  margin-bottom: 3px;
+}
+.eventSummary h3 a {
+  color: #3498db;
+}
+.eventSummary h3 a:hover {
+  color: #3498db;
+}
+.eventSummary p {
+  font-size: 13px;
+}
+.eventSummary p.blogMeta {
+  color: #ffbc46;
+  margin-bottom: 5px;
+}
 /* -- Responsive Styles (NOT MOBILE FIRST) -- */
 /* terms and condition  popup*/
 /* bootstrap level media queries */
